@@ -1,21 +1,22 @@
-// Import the functions you need from the SDKs you need
+// Import the necessary functions from the Firebase SDKs
 import { initializeApp } from "firebase/app";
-import { getAuth,
-  signInWithRedirect,
-  signInWithPopup,
-  GoogleAuthProvider 
-} from "firebase/auth";
-
 import { 
-getFirestore,
-doc,
-getDoc,
-addDoc,
-setDoc,
-collection
- } from "firebase/firestore";
-// import { getAnalytics, logEvent } from "firebase/analytics";
+  getAuth, 
+  signInWithRedirect, 
+  signInWithPopup, 
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword
+} from "firebase/auth";
+import { 
+  getFirestore, 
+  doc, 
+  getDoc, 
+  addDoc, 
+  setDoc, 
+  collection 
+} from "firebase/firestore";
 
+// Configure Firebase using the credentials
 const firebaseConfig = {
   apiKey: "AIzaSyC9MMcvI8JMeJI60BfxysyOILl9zQnbOoA",
   authDomain: "aero-athletics.firebaseapp.com",
@@ -26,55 +27,57 @@ const firebaseConfig = {
   measurementId: "G-F982MSEG31"
 };
 
-// Initialize Firebase
+// Initialize Firebase using the configuration above
 const fireBaseApp = initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
-     prompt: 'select_account' 
-    });
 
+// Configure the Google Auth Provider for sign-in
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+// Export the authentication instance
 export const auth = getAuth(fireBaseApp);
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+// Export functions for signing in with Google
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(fireBaseApp);
 
-export const createUserDocumentFromAuth = async (userAuth) => {
-  const userDocRef = doc(db, 'users', userAuth.uid);
+// Create a new user document in Firestore using the user authentication data
+export const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
+  if (!userAuth) return;
 
+  const userDocRef = doc(db, 'users', userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-  const {displayName, email } = userAuth;
+  const { displayName, email } = userAuth;
   const createdAt = new Date(); 
-  if (! userSnapshot.exists() ) {
+
+  if (!userSnapshot.exists()) {
     try {
-      const createNewUser = await setDoc(userDocRef, {
+      await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt
+        createdAt,
+        ...additionalInformation
       });
-      console.log("Document written with ID: ", createNewUser.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-    
   }
+  
   return userDocRef;
-}
+};
 
-
-
-
-
-
-
-
-
-
-
-
+// Create a new user document in Firestore using the user authentication data
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return createUserWithEmailAndPassword(auth, email, password);
+  
+};
 
 export default signInWithGooglePopup;
 
-
+// (Optional) Initialize Firebase Analytics and log an event
 // const analytics = getAnalytics(app);
 // logEvent(analytics, 'notification_received');
