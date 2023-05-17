@@ -5,7 +5,9 @@ import {
   signInWithRedirect, 
   signInWithPopup, 
   GoogleAuthProvider,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "firebase/auth";
 import { 
   getFirestore, 
@@ -75,6 +77,27 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
   
 };
+
+// sign in existing user with email and password
+export const signInEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
+// set up a listener for auth state changes
+export const onAuthStateChange = async (user) => {
+  if (!user) return;
+  
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      return user;
+    }
+  })
+
+};
+
+
+
 
 export default signInWithGooglePopup;
 
