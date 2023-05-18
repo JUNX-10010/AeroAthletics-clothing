@@ -4,12 +4,15 @@ import {
     useEffect,
     useState
 } from "react";
-import { createUserDocumentFromAuth, onAuthStateChangeListener,  } from "../utils/firebase/firebase.utils";
+import {
+    createUserDocumentFromAuth,
+    onAuthStateChangeListener
+} from "../utils/firebase/firebase.utils";
+
 // set the actula value you want access
 export const UserContext = createContext({
     currentUser: null,
     setCurrentUser: () => { }
-
 });
 
 // create a custom hook to use the userContext
@@ -28,16 +31,11 @@ export const UserProvider = ({ children }) => {
             unsubscribe;
         }   
     },[]);
-
-
-    return ( <UserContext.Provider value={value}>{children}</UserContext.Provider> )
-
-
+    return ( <UserContext.Provider value={value}>{children}</UserContext.Provider> );
 }
 
 // set prop types
 UserProvider.propTypes = {
     children: PropTypes.node.isRequired
-}
-
+};
 export default UserContext;

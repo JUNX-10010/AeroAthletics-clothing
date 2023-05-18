@@ -10,10 +10,13 @@ import { UserContext } from "../../contexts/user.contex";
 import {
     signOutUser
 } from "../../utils/firebase/firebase.utils";
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import CartContext from "../../contexts/cart.contex";
 
 const Navagation = () => {
     const { currentUser } = useContext(UserContext);
-
+    const { activeCart } = useContext(CartContext);
 
 
 
@@ -31,12 +34,12 @@ const Navagation = () => {
                             className="nav-link"
                             onClick={ signOutUser }>SIGN OUT </span>)
                             : ( <Link className="nav-link" to="/auth">SIGN IN</Link> )
-
                     }
-                    <Link className="nav-link" to="/cart">
-                        <div className="cart">CART</div>
-                    </Link>
+                    <CartIcon />
                 </div>
+                {
+                    activeCart && <CartDropdown />
+                }
             </div>
             <Outlet />
         </Fragment>

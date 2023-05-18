@@ -1,20 +1,18 @@
 import "./sign-in.style.scss"
 import { getRedirectResult } from "firebase/auth";
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
 import {
   useEffect,
   useState,
 } from "react";
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+
 import {
   auth,
   signInWithGoogleRedirect,
-  createUserDocumentFromAuth,
   signInEmailAndPassword,
   onAuthStateChangeListener
 } from "../../utils/firebase/firebase.utils"; 
-
-
 
 function SignInForm() {  
   const defaultFormFields = {
