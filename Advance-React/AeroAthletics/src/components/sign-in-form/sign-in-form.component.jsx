@@ -1,6 +1,9 @@
 import "./sign-in.style.scss"
 import { getRedirectResult } from "firebase/auth";
-import {  useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import {
@@ -8,28 +11,23 @@ import {
   signInWithGoogleRedirect,
   createUserDocumentFromAuth,
   signInEmailAndPassword,
-  onAuthStateChange
+  onAuthStateChangeListener
 } from "../../utils/firebase/firebase.utils"; 
 
 
 
-function SignInForm() {
+function SignInForm() {  
   const defaultFormFields = {
     email: "",
     password: ""
   };
-
+  
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
   useEffect(() => {
       const authUser = async () => {
-          const response = await getRedirectResult(auth);
-          if (response) {
-              const { userDocRef } = await createUserDocumentFromAuth(response.user);
-              return userDocRef;
-              
-          }
+        await getRedirectResult(auth);
       }
       authUser();
   }, [])
@@ -41,12 +39,10 @@ function SignInForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { user } = await signInEmailAndPassword(email, password);
-      await onAuthStateChange(user);
+      await signInEmailAndPassword(email, password);
+      await onAuthStateChangeListener();
       resetFormFields();
     } catch (e) {
-      // if (e.code === 'auth/invalid-email' || e.code === 'auth/wrong-password') {
-      //   alert('Invalid email or password');
       switch (e.code) {
         case 'auth/invalid-email':
           alert('Invalid email');

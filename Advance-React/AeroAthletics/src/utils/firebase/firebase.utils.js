@@ -1,6 +1,7 @@
 // Import the necessary functions from the Firebase SDKs
 import { initializeApp } from "firebase/app";
 import { 
+  signOut,
   getAuth, 
   signInWithRedirect, 
   signInWithPopup, 
@@ -13,9 +14,7 @@ import {
   getFirestore, 
   doc, 
   getDoc, 
-  addDoc, 
   setDoc, 
-  collection 
 } from "firebase/firestore";
 
 // Configure Firebase using the credentials
@@ -85,19 +84,14 @@ export const signInEmailAndPassword = async (email, password) => {
 };
 
 // set up a listener for auth state changes
-export const onAuthStateChange = async (user) => {
-  if (!user) return;
-  
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      return user;
-    }
-  })
+export const onAuthStateChangeListener = async (callback) => {
+  if (!callback) return;
+  onAuthStateChanged(auth, (callback))
 
 };
 
-
-
+// sign out user
+export const signOutUser = async () => signOut(auth);
 
 export default signInWithGooglePopup;
 

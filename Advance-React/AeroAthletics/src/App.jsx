@@ -15,9 +15,10 @@ import Authentication from "./routes/authentication/authentication.component";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={ <Navagation/>}>
+      <Route path="/" element={ <Navagation/> }>
         <Route index element={ <Home/>} />
-        <Route path="auth" element={<Authentication/>} />
+        <Route path="/auth" element={<Authentication />}>
+        </Route>
         {/* <Route path="contact" element={<Contact/>} />
         <Route path="shop" element={<Shop/>} /> */}
       </Route>
