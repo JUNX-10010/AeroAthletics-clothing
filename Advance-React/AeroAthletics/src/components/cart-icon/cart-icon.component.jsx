@@ -2,18 +2,17 @@ import './cart-icon.styles.scss';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import { useContext } from 'react';
 import CartContext from '../../contexts/cart.contex';
-
 const CartIcon = () => {
-    const { setActiveCart, activeCart } = useContext(CartContext);
+    const { setActiveCart, activeCart, cartCount } = useContext(CartContext);
 
     // toggle dropdown: change activeCart to true or false
     const toggleCart = () => {
-        setActiveCart(!activeCart)
+        setActiveCart(!activeCart);
     }
     return (
         <div className='cart-icon-container' onClick={toggleCart}>
             <ShoppingIcon className='shopping-icon' />
-            <span className='item-count'>0</span>
+            <span className='item-count'>{cartCount}</span>
         </div>
     )
 }
