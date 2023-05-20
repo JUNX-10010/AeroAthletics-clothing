@@ -1,0 +1,35 @@
+body{
+    background-image: url(/section6_css/assets/background1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h2{
+    padding: 100px;
+    color: white;
+    text-align: center;
+    border: 5px solid rgba(13, 13, 14, 0.5);
+    cursor: pointer;
+}
+img{
+    float: left;
+}
+p{
+    line-height: 50px;
+    font-style: italic;
+    font-size: 80%;
+    font-family: 'Roboto', sans-serif;
+
+
+}
+
+li{
+    
+    color: white;
+    display: inline-block;
+    list-style: none;
+}
+
+footer{
+    clear: both;
+    text-align: center;
+}

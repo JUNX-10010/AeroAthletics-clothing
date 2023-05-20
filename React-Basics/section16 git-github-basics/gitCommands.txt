@@ -1,0 +1,28 @@
+Configuration
+git config --global user.name "Your Name": Set the username to be used for all commits in the current user's account.
+git config --global user.email "youremail@example.com": Set the email address to be used for all commits in the current user's account.
+git config --global core.editor "editor": Set the default text editor to be used for commit messages.
+
+Repository Management
+
+git init: Initialize a new repository in the current directory.
+git clone <repository URL>: Create a local copy of a remote repository.
+git remote add origin <repository URL>: Add a remote repository as the default location to push and pull changes.
+git status: Check the status of the current repository.
+git add <filename>: Add a file to the staging area.
+git add .: Add all changes in the current directory to the staging area.
+git commit -m "Commit message": Commit changes with a descriptive message.
+git push origin <branch>: Push changes to a remote repository.
+git pull: Pull changes from a remote repository.
+git branch: List all branches in the current repository.
+git branch <branch-name>: Create a new branch.
+git checkout <branch-name>: Switch to a different branch.
+git merge <branch-name>: Merge changes from a different branch into the current branch.
+git stash: Save changes that are not yet ready to be committed.
+
+History and Changes
+git log: Display a log of all commits in the current repository.
+git diff: Show the differences between the current state and the last commit.
+git blame <filename>: Display who last changed each line of a file.
+git reset: Undo changes to the repository.
+git revert: Revert a commit.

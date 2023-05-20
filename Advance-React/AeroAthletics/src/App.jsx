@@ -8,6 +8,7 @@ import {
 import Navagation from "./components/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
+
 // import Contact from "./routes/contact/contact.component";
 // import Shop from "./routes/shop/shop.component";
 
