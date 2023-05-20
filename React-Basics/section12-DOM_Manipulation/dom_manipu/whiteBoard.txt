@@ -1,5 +1,0 @@
-// 1. If you click on the list item, it toggles the .done  class on and off.
-
-    step1: get element on click
-    step2: if OnClickElement === current element. Compair current index
-    step3: de
