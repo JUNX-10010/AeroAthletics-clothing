@@ -8,7 +8,10 @@ import {
 import Navagation from "./components/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
+<<<<<<< HEAD
 import CheckOut from "./routes/checkout/checkout.component";
+=======
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
 
 // import Contact from "./routes/contact/contact.component";
 // import Shop from "./routes/shop/shop.component";

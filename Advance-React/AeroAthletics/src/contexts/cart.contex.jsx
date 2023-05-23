@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 
 export const CartContext = createContext({
     cartCount: 0,
+<<<<<<< HEAD
+=======
+    setcartCount: () => {},
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
     cartItems: [],
+    setCartItems: () => { },
     activeCart: false,
+<<<<<<< HEAD
     cartTotal: 0,
     setCartTotal: () => {},
     setcartCount: () => {},
@@ -13,6 +19,10 @@ export const CartContext = createContext({
     removeItemFromCart: () => {},
     addItemToCart: () => {},
     clearItemFromCart: () => {},
+=======
+    setActiveCart: () => { },
+    addItemToCart: () => { }
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
 
 
 });
@@ -31,6 +41,7 @@ const addCartItem = (cartItems, productToAdd) => {
     if (exestingCartItem) {
         return (cartItems.map( (cartItem) => {
             if (cartItem.id === productToAdd.id) {
+<<<<<<< HEAD
                 const updatedCartQuantity = { ...cartItem, quantity: cartItem.quantity + 1 }
                 const itemTotal = updatedCartQuantity.price * updatedCartQuantity.quantity;
                 const updateItemTotal = { ...updatedCartQuantity, itemTotal: itemTotal }
@@ -38,11 +49,16 @@ const addCartItem = (cartItems, productToAdd) => {
             }
             
 
+=======
+                return {...cartItem, quantity: cartItem.quantity + 1}
+            }
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
             return cartItem;
                 } )
         )
     }
 
+<<<<<<< HEAD
 
     // if not found, add product to cart
     return [...cartItems, { ...productToAdd, quantity: 1, itemTotal: productToAdd.price }]
@@ -97,6 +113,11 @@ const UpdateCartTotal = (cartItems) => {
     return cartItems.map((cartItem) => cartItem.itemTotal)
         .reduce((acc, itemTotal) => acc + itemTotal, 0);
 }
+=======
+    // if not found, add product to cart
+    return [...cartItems, { ...productToAdd, quantity: 1 }]
+};
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
 
 export const CartProvider = ({ children }) => {
     const [cartCount, setcartCount] = useState(0);
@@ -105,6 +126,7 @@ export const CartProvider = ({ children }) => {
     const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
+<<<<<<< HEAD
       const newCartCount = () => {setcartCount(updatecartCount(cartItems))}
     newCartCount();
 
@@ -126,6 +148,22 @@ export const CartProvider = ({ children }) => {
 
     const clearCartItem = (productToRemove) => {
         setCartItems(clearItemFromCart(cartItems, productToRemove));
+=======
+    const newCartCount = () => {
+      setcartCount(updatecartCount(cartItems))
+    }
+    newCartCount();
+  },[cartItems, setcartCount])
+
+    const addItemToCart = (productToAdd) => { 
+        setCartItems(addCartItem(cartItems, productToAdd));
+        
+        setActiveCart(true);
+        // set timeout to hide cart after 3 seconds
+        // setTimeout(() => {
+        //     setActiveCart(false);
+        // }, 3000);
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
     };
     
     const value = {
@@ -133,11 +171,16 @@ export const CartProvider = ({ children }) => {
         activeCart,
         setActiveCart,
         addItemToCart, 
+<<<<<<< HEAD
         removeItemFromCart,
         cartCount, 
         setcartCount,
         clearCartItem,
         cartTotal
+=======
+        cartCount, 
+        setcartCount
+>>>>>>> f196d9747745bb0c23b7b82bd753ef14d6440a01
     };
 
     return (<CartContext.Provider value={value}>{ children }</CartContext.Provider> )
