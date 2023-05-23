@@ -55,6 +55,7 @@ CheckoutItem.propTypes = {
         name: PropTypes.string,
         imageUrl: PropTypes.string,
         price: PropTypes.number,
+        itemTotal: PropTypes.number,
         id: PropTypes.number,
         quantity: PropTypes.number
     })
