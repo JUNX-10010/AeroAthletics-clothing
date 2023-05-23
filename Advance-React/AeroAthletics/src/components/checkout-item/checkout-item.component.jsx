@@ -5,7 +5,7 @@ import { CartContext } from '../../contexts/cart.contex';
 
 const CheckoutItem = ({ cartItem }) => {
     const { addItemToCart, removeItemFromCart, clearCartItem } = useContext(CartContext);
-    const { name, imageUrl, price, id, itemTotal } = cartItem;
+    const { name, imageUrl, price, id } = cartItem;
 
     const quantityClicker = (cartItem) => {
         const { quantity } = cartItem;
@@ -41,7 +41,7 @@ const CheckoutItem = ({ cartItem }) => {
                 </div>
                 <span className="name">{name}</span>
                 {quantityClicker(cartItem)}
-                <span className="price">${itemTotal}</span>
+                <span className="price"> $ {price} </span>
                 <div onClick={removeCartItem} className="remove-button"> &#10005; </div>
             </div>
         )
@@ -55,7 +55,6 @@ CheckoutItem.propTypes = {
         name: PropTypes.string,
         imageUrl: PropTypes.string,
         price: PropTypes.number,
-        itemTotal: PropTypes.number,
         id: PropTypes.number,
         quantity: PropTypes.number
     })
