@@ -8,6 +8,7 @@ import {
 import Navagation from "./components/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
+import CheckOut from "./routes/checkout/checkout.component";
 
 // import Contact from "./routes/contact/contact.component";
 // import Shop from "./routes/shop/shop.component";
@@ -20,7 +21,8 @@ const App = () => {
       <Route path="/" element={ <Navagation/> }>
         <Route index element={ <Home/>} />
         <Route path="/auth" element={<Authentication />} />
-        <Route path="/shop" element={<Shop/>} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/checkout" element={ <CheckOut/>} />
       </Route>
     </Routes>      
     
